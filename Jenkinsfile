@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Install Requirements') {
             steps {
-                sh 'python binary_model.py'
+                sh 'python multilabel_model.py'
             }
         }
     }
