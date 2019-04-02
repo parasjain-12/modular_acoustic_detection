@@ -19,6 +19,7 @@ pipeline {
         }
         stage('Genrate Repor') {
             steps {
+                sh 'pip install jenkinsapi'
                 sh 'python genrate_report.py'
             }
         }
