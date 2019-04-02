@@ -30,7 +30,7 @@ tools = get_recursive_sound_names(TOOLS_SOUNDS)
 
 
 #Importing balanced data from the function. Including audiomoth annotated files for training
-DATA_FRAME = balancing_dataset.balanced_data(flag_for_audiomoth=1)
+DATA_FRAME = balancing_dataset.balanced_data(flag_for_audiomoth=0)
 print DATA_FRAME.shape[0], "examples"
 
 # Different classes of sounds.
