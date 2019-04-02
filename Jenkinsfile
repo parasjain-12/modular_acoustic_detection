@@ -5,10 +5,12 @@
  */
 
 pipeline {
-  agent any 
+    agent any
     stages {
-        stage ('Start') {
-  
-    } 
-}
+        stage('build') {
+            steps {
+                sh 'python --version'
+            }
+        }
+    }
 }
