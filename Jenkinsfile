@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Binary Model') {
             steps {
-                sh 'python multilabel_model.py'
+                sh 'python binary_model.py'
             }
         }
         stage('Genrate Repor') {
