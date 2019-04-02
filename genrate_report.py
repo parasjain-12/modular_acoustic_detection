@@ -9,6 +9,6 @@ build_no=str(J['master'].get_last_build())[-2:]
 print "current BUILD_NUMBER :",build_no
 
 # create a pickle file, buid_number as name
-filename = "/var/lib/jenkins/workspace/jenkins-python-test_master@tmp/%s.pkl" %build_no
+filename = "/home/paras/.jenkins/workspace/test_m/%s.pkl" %build_no
 with open(filename ,"wb") as f:
     pickle.dump(df,f)
