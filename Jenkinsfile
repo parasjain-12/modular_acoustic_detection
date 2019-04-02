@@ -12,9 +12,14 @@ pipeline {
                 sh 'python --version'
             }
         }
-        stage('Install Requirements') {
+        stage('Binary Model') {
             steps {
                 sh 'python multilabel_model.py'
+            }
+        }
+        stage('Genrate Repor') {
+            steps {
+                sh 'python genrate_report.py'
             }
         }
     }
