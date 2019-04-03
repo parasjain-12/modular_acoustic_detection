@@ -158,7 +158,7 @@ from jenkinsapi.jenkins import Jenkins
 J = Jenkins('http://localhost:8080', username='paras', password='roundglass')
 build_no=str(J['test_m'].get_last_build())[-2:]
 print "current BUILD_NUMBER :",build_no
-filename = "/home/paras/.jenkins/workspace/test_m/%s.pkl",%build_no
+filename = "/home/paras/.jenkins/workspace/test_m/%s.pkl" %build_no
 with open("filename"   ,"wb") as f1:
     pickle.dump(CL_REPORT,f1)
 
