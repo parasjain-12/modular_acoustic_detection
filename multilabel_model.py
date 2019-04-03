@@ -110,7 +110,7 @@ CLF2_TEST_TARGET = LABELS_BINARIZED_TEST
 #Implementing using the keras usual training techinque
 MODEL = create_keras_model()
 MODEL_TRAINING = MODEL.fit(CLF2_TRAIN, CLF2_TRAIN_TARGET,
-                           epochs=50, batch_size=100, verbose=1,
+                           epochs=20, batch_size=100, verbose=1,
                            validation_data=(CLF2_TEST, CLF2_TEST_TARGET))
 
 #Predict on train and test data
