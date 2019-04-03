@@ -9,18 +9,13 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                sh 'pip install jenkinsapi'
                 sh 'python --version'
             }
         }
-        stage('Binary Model') {
+        stage('Multilabel Model And storing it into ') {
             steps {
-                sh 'python binary_model.py'
-            }
-        }
-        stage('Genrate Repor') {
-            steps {
-                sh 'pip install jenkinsapi'
-                sh 'python genrate_report.py'
+                sh 'python multilabel_model.py'
             }
         }
     }
