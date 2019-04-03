@@ -18,9 +18,9 @@ pipeline {
                 sh 'python multilabel_model.py'
             }
         }
-         stage('Generate Report') {
+         stage('Read 2 Report') {
             steps {
-                sh 'python genrate_report.py'
+                sh 'python read_report.py'
             }
         }
     }
