@@ -152,6 +152,9 @@ HL = hamming_loss(CLF2_TEST_TARGET.values.argmax(axis=1), CLF2_TEST_PREDICTION.a
 
 print 'Hamming Loss :', HL
 print 'Accuracy :', ACCURACY
+import pickle 
+with open("/home/paras/.jenkins/workspace/test_m/report.pkl"   ,"wb") as f1:
+    pickle.dump(CL_REPORT,f1)
 
 #Save the model weights
 # MODEL.save_weights('multiclass_weights.h5')
