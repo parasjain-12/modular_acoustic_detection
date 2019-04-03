@@ -10,26 +10,27 @@ build_no=str(J['test_m'].get_last_build())[-2:]
 print "current BUILD_NUMBER :",build_no
 
 # to read pickle file of current build
-filename = "/home/paras/.jenkins/workspace/test_m/%s.pkl" %build_no
-with open(filename ,"rb") as f1:
+filename1 = "/home/paras/.jenkins/workspace/test_m/%s.pkl" %build_no
+with open(filename1 ,"rb") as f1:
     data1=pickle.load(f1)
 print "\ncurrent BUILD data :",data1
+
 
 # to get previous BUILD_NUMBER
 last_build_no=str(J['test_m'].get_last_good_build())[-2:]
 print "Previous BUILD_NUMBER :",last_build_no
 
 # to read pickle file of previous build
-filename = "/home/paras/.jenkins/workspace/test_m/%s.pkl" %last_build_no
-with open(filename ,"rb") as f2:
+filename2 = "/home/paras/.jenkins/workspace/test_m/%s.pkl" %last_build_no
+with open(filename2 ,"rb") as f2:
     data2=pickle.load(f2)
 print "\nprevious BUILD data :",data2
 
-df1=pd.DataFrame(data1)
-#print "\nPrevious Results :"
-#print df1,"\n"
+df1=pd.read_pickle(filename1)
+print "\nPrevious Results :"
+print df1,"\n"
 
-df2=pd.DataFrame(data2)
+df2=pd.read_pickle(filename2)
 
 final_df1=df1.drop(['support'])
 final_df2=df2.drop(['support'])
