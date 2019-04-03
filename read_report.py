@@ -28,7 +28,7 @@ print "\nprevious BUILD data :",data2
 
 df1=pd.read_pickle(filename1)
 print "\nPrevious Results :"
-print df1,"\n"
+print df1.columns,"\n"
 
 df2=pd.read_pickle(filename2)
 
