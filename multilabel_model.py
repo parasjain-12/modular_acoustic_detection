@@ -152,8 +152,14 @@ HL = hamming_loss(CLF2_TEST_TARGET.values.argmax(axis=1), CLF2_TEST_PREDICTION.a
 
 print 'Hamming Loss :', HL
 print 'Accuracy :', ACCURACY
-import pickle 
-with open("/home/paras/.jenkins/workspace/test_m/report.pkl"   ,"wb") as f1:
+import pickle
+from jenkinsapi.jenkins import Jenkins
+
+J = Jenkins('http://localhost:8080', username='paras', password='roundglass')
+build_no=str(J['test_m'].get_last_build())[-2:]
+print "current BUILD_NUMBER :",build_no
+filename = "/home/paras/.jenkins/workspace/test_m/%s.pkl" %build_no"
+with open("filename"   ,"wb") as f1:
     pickle.dump(CL_REPORT,f1)
 
 #Save the model weights
