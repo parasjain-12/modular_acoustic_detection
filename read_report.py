@@ -176,9 +176,10 @@ for key, value in weighted_avg.iteritems():
         print >>f,x
 import config
 from slackclient import SlackClient
-token  = "xoxp-246120261264-541279523109-600427567829-82bf3c29e742533e2d63f0ab1c0188ed"
+token  = "xoxp-601323582535-600179716996-601332785047-41a3802ba14f65579bdb90437cd89869"
 sc = SlackClient(token)
 
 sc.api_call("files.upload", filename=name_file, \
-    channels='#jenkin_test',username='Paras Jain', \
-    file=open(filename12, 'r').read())
+    channels='#jenkin',username='Paras Jain', \
+    file1=open(filename12, 'r').read())
+    files.upload(token,file1)
