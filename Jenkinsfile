@@ -10,7 +10,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'pip install jenkinsapi'
-                sh 'pip install config'
+                sh 'pip install slackclient'
                 sh 'python --version'
             }
         }
