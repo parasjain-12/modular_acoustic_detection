@@ -33,6 +33,7 @@ post {
             echo 'Succeeeded...!'
             slackSend (color: '#00FF00', message: "SUCCESSFUL...! Job ")
             echo "current build12 number: ${currentBuild.number}"
+            slackSend("/home/paras/.jenkins/workspace/test_m/${currentBuild.number}.txt")
         }
     }
 }
