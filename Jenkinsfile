@@ -10,6 +10,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'pip install jenkinsapi'
+                sh 'pip install config'
                 sh 'python --version'
             }
         }
