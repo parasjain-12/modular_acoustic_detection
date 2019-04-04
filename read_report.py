@@ -9,6 +9,9 @@ J = Jenkins('http://localhost:8080', username='paras', password='roundglass')
 build_no=str(J['test_m'].get_last_build())[-2:]
 print "current BUILD_NUMBER :",build_no
 
+filename = '/home/paras/.jenkins/workspace/test_m/%s.txt' %build_no
+f = open(filename,'w')
+
 # to read pickle file of current build
 
 filename1 = "/home/paras/.jenkins/workspace/test_m/%s.csv" %build_no
@@ -43,82 +46,130 @@ print "\nCurrent Results :\n",final_df2
 #               'Domestic_Animals','Tools','macro_avg','micro_avg','weighted_avg']
 print final_df2.iloc[0][2:]
 print "\n============ Motor_Sounds =============="
+f.write("\n============ Motor_Sounds ==============\n")
+
 motor_sound=(final_df2.iloc[0][2:] - final_df1.iloc[0][2:]) *100
 #print motor_sound
 for key, value in motor_sound.iteritems():
     if value > 0:
         print key,"increased by", format(value).replace("-",""),"%"
+        x = key,"increased by", format(value).replace("-",""),"%"
+        print >>f, x 
     else:
         print key," decreased by", format(value).replace("-",""),"%"
+        x=key," decreased by", format(value).replace("-",""),"%"
+        print >>f,x
         
 print "\n========== Explosion_Sounds ============"
+f.write("\n========== Explosion_Sounds ============\n")
+
 explosion_sound=(final_df2.iloc[1][2:] - final_df1.iloc[1][2:]) *100
 #print explosion_sound
 for key, value in explosion_sound.iteritems():
     if value > 0:
         print key,"increased by", format(value).replace("-",""),"%"
+        x = key,"increased by", format(value).replace("-",""),"%"
+        print >>f,x
     else:
         print key," decreased by", format(value).replace("-",""),"%"
+        x= key," decreased by", format(value).replace("-",""),"%"
+        print >>f,x
 
 print "\n============ Human_Sound =============="
+f.write("\n============ Human_Sound ==============\n")
 human_sound=(final_df2.iloc[2][2:] - final_df1.iloc[2][2:]) *100
 #print human_sound
 for key, value in human_sound.iteritems():
     if value > 0:
         print key,"increased by", format(value).replace("-",""),"%"
+        x = key,"increased by", format(value).replace("-",""),"%"
+        print >>f,x
     else:
         print key," decreased by", format(value).replace("-",""),"%"
+        x =key," decreased by", format(value).replace("-",""),"%"
+        print >>f,x
 
 print "\n=========== Nature_Sound ============="
+f.write("\n=========== Nature_Sound =============\n")
 nature_sound=(final_df2.iloc[3][2:] - final_df1.iloc[3][2:]) *100
 #print nature_sound
 for key, value in nature_sound.iteritems():
     if value > 0:
         print key,"increased by", format(value).replace("-",""),"%"
+        x=key,"increased by", format(value).replace("-",""),"%"
+        print >>f,x
     else:
         print key," decreased by", format(value).replace("-",""),"%"
+        x = key," decreased by", format(value).replace("-",""),"%"
+        print >>f,x
 
 print "\n========== Domestic_Animals ============"
+f.write("\n========== Domestic_Animals ============\n")
+
 domestic_animals=(final_df2.iloc[4][2:] - final_df1.iloc[4][2:]) *100
 #print domestic_animals
 for key, value in domestic_animals.iteritems():
     if value > 0:
         print key,"increased by", format(value).replace("-",""),"%"
+        x = key,"increased by", format(value).replace("-",""),"%"
+        print >>f,x
     else:
         print key," decreased by", format(value).replace("-",""),"%"
+        x = key," decreased by", format(value).replace("-",""),"%"
+        print >>f,x
 
 print "\n=============== Tools ================="
+f.write("\n=============== Tools =================\n")
 tools=(final_df2.iloc[5][2:] - final_df1.iloc[5][2:]) *100
 #print tools
 for key, value in tools.iteritems():
     if value > 0:
         print key,"increased by", format(value).replace("-",""),"%"
+        x = key,"increased by", format(value).replace("-",""),"%"
+        print >>f,x
     else:
         print key," decreased by", format(value).replace("-",""),"%"
+        x = key," decreased by", format(value).replace("-",""),"%"
+        print >>f,x
 
 print "\n============= Macro_Avg ==============="
+f.write("\nn============= Macro_Avg ===============\n")
 macro_avg=(final_df2.iloc[6][2:] - final_df1.iloc[6][2:]) *100
 #print macro_avg
 for key, value in macro_avg.iteritems():
     if value > 0:
         print key,"increased by", format(value).replace("-",""),"%"
+        x=key,"increased by", format(value).replace("-",""),"%"
+        print >>f,x
     else:
         print key," decreased by", format(value).replace("-",""),"%"
+        x=key," decreased by", format(value).replace("-",""),"%"
+        print >>f,x
 
 print "\n============== Micro_Avg ==============="
+f.write("\nn============== Micro_Avg ===============\n")
 micro_avg=(final_df2.loc[7][2:] - final_df1.loc[7][2:]) *100
 #print micro_avg
 for key, value in micro_avg.iteritems():
     if value > 0:
         print key,"increased by", format(value).replace("-",""),"%"
+        x=key,"increased by", format(value).replace("-",""),"%"
+        print >>f,x
     else:
         print key," decreased by", format(value).replace("-",""),"%"
+        x = key," decreased by", format(value).replace("-",""),"%"
+        print >>f,x
 
 print "\n============ Weighted_Avg =============="
+f.write("\n============ Weighted_Avg ==============\n")
 weighted_avg=(final_df2.loc[8][2:] - final_df1.loc[8][2:]) *100
 #print weighted_avg
 for key, value in weighted_avg.iteritems():
     if value > 0:
         print key,"increased by", format(value).replace("-",""),"%"
+        x = key,"increased by", format(value).replace("-",""),"%"
+        print >>f,x
     else:
-        print key," decreased by", format(value).replace("-",""),"%"     
+        print key," decreased by", format(value).replace("-",""),"%" 
+        x= key," decreased by", format(value).replace("-",""),"%" 
+        print >>f,x
