@@ -9,8 +9,9 @@ J = Jenkins('http://localhost:8080', username='paras', password='roundglass')
 build_no=str(J['test_m'].get_last_build())[-2:]
 print "current BUILD_NUMBER :",build_no
 
-filename = '/home/paras/.jenkins/workspace/test_m/%s.txt' %build_no
-f = open(filename,'w')
+filename12 = '/home/paras/.jenkins/workspace/test_m/%s.txt' %build_no
+f = open(filename12,'w')
+name_file = '%s.txt' %build_no
 
 # to read pickle file of current build
 
@@ -173,3 +174,10 @@ for key, value in weighted_avg.iteritems():
         print key," decreased by", format(value).replace("-",""),"%" 
         x= key," decreased by", format(value).replace("-",""),"%" 
         print >>f,x
+import config
+from slackclient import SlackClient
+sc = SlackClient(config.slack_api_token)
+
+sc.api_call("files.upload", filename=name_file, \
+    channels='#jenkin_test',username='Paras Jain', \
+    file=open(filename12, 'r').read())
