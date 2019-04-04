@@ -33,4 +33,5 @@ post {
             echo 'Succeeeded...!'
             slackSend (color: '#00FF00', message: "SUCCESSFUL...! Job ")
         }
+    }
 }
