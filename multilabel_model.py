@@ -154,13 +154,18 @@ print 'Hamming Loss :', HL
 print 'Accuracy :', ACCURACY
 import pickle
 from jenkinsapi.jenkins import Jenkins
+import io 
+import pandas as pd
+
+df = pd.read_fwf(io.StringIO(CL_REPORT))
+df.drop([7,0],inplace = True)
 
 J = Jenkins('http://localhost:8080', username='paras', password='roundglass')
 build_no=str(J['test_m'].get_last_build())[-2:]
 print "current BUILD_NUMBER :",build_no
-filename = "/home/paras/.jenkins/workspace/test_m/%s.pkl" %build_no
-with open(filename,"wb") as f1:
-    pickle.dump(CL_REPORT,f1)
+filename = "/home/paras/.jenkins/workspace/test_m/%s.csv" %build_no
+df.to_csv(filename,df)
+print "file save"
 
 #Save the model weights
 # MODEL.save_weights('multiclass_weights.h5')
