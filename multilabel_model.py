@@ -164,7 +164,7 @@ J = Jenkins('http://localhost:8080', username='paras', password='roundglass')
 build_no=str(J['test_m'].get_last_build())[-2:]
 print "current BUILD_NUMBER :",build_no
 filename = "/home/paras/.jenkins/workspace/test_m/%s.csv" %build_no
-df.to_csv(filename,df)
+df.to_csv(filename)
 print "file save"
 
 #Save the model weights
