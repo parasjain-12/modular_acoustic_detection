@@ -32,7 +32,7 @@ post {
         success {
             echo 'Succeeeded...!'
             slackSend (color: '#00FF00', message: "SUCCESSFUL...! Job ")
-            slackSend(echo "current build number: ${currentBuild.number}")
+            slackSend("current build number: ${currentBuild.number}")
         }
     }
 }
