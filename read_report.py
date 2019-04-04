@@ -10,10 +10,11 @@ build_no=str(J['test_m'].get_last_build())[-2:]
 print "current BUILD_NUMBER :",build_no
 
 # to read pickle file of current build
-filename1 = "/home/paras/.jenkins/workspace/test_m/%s.pkl" %build_no
-with open(filename1 ,"rb") as f1:
-    data1=pickle.load(f1)
-print "\ncurrent BUILD data :",data1
+
+filename1 = "/home/paras/.jenkins/workspace/test_m/%s.csv" %build_no
+#filename1 = "/home/paras/.jenkins/workspace/test_m/29.csv"
+
+final_df1 = pd.read_csv(filename1)
 
 
 # to get previous BUILD_NUMBER
@@ -21,19 +22,18 @@ last_build_no=str(J['test_m'].get_last_good_build())[-2:]
 print "Previous BUILD_NUMBER :",last_build_no
 
 # to read pickle file of previous build
-filename2 = "/home/paras/.jenkins/workspace/test_m/%s.pkl" %last_build_no
-with open(filename2 ,"rb") as f2:
-    data2=pickle.load(f2)
-print "\nprevious BUILD data :",data2
+filename2 = "/home/paras/.jenkins/workspace/test_m/%s.csv" %last_build_no
 
-df1=pd.read_pickle(filename1)
-print "\nPrevious Results :"
-print df1.columns,"\n"
+#filename2 = "/home/paras/.jenkins/workspace/test_m/29.csv"
 
-df2=pd.read_pickle(filename2)
+final_df2=pd.read_csv(filename2)
 
-final_df1=df1.drop(['support'])
-final_df2=df2.drop(['support'])
+
+
+final_df1.drop(['support'], axis=1,inplace = True)
+final_df2.drop(['support'], axis=1,inplace = True)
+final_df1.drop(['Unnamed: 0'], axis=1,inplace = True)
+final_df2.drop(['Unnamed: 0'], axis=1,inplace = True)
 print "\nPrevious Results :\n",final_df1
 #print final_df1,"\n"
 print "\nCurrent Results :\n",final_df2
@@ -41,9 +41,9 @@ print "\nCurrent Results :\n",final_df2
 
 # columns=['Motor_Sound','Explosion_Sound','Human_Sound','Nature_Sound', \
 #               'Domestic_Animals','Tools','macro_avg','micro_avg','weighted_avg']
-
+print final_df2.iloc[0][2:]
 print "\n============ Motor_Sounds =============="
-motor_sound=(final_df2.loc[:,'0'] - final_df1.loc[:,'0']) *100
+motor_sound=(final_df2.iloc[0][2:] - final_df1.iloc[0][2:]) *100
 #print motor_sound
 for key, value in motor_sound.iteritems():
     if value > 0:
@@ -52,7 +52,7 @@ for key, value in motor_sound.iteritems():
         print key," decreased by", format(value).replace("-",""),"%"
         
 print "\n========== Explosion_Sounds ============"
-explosion_sound=(final_df2.loc[:,'1'] - final_df1.loc[:,'1']) *100
+explosion_sound=(final_df2.iloc[1][2:] - final_df1.iloc[1][2:]) *100
 #print explosion_sound
 for key, value in explosion_sound.iteritems():
     if value > 0:
@@ -61,7 +61,7 @@ for key, value in explosion_sound.iteritems():
         print key," decreased by", format(value).replace("-",""),"%"
 
 print "\n============ Human_Sound =============="
-human_sound=(final_df2.loc[:,'2'] - final_df1.loc[:,'2']) *100
+human_sound=(final_df2.iloc[2][2:] - final_df1.iloc[2][2:]) *100
 #print human_sound
 for key, value in human_sound.iteritems():
     if value > 0:
@@ -70,7 +70,7 @@ for key, value in human_sound.iteritems():
         print key," decreased by", format(value).replace("-",""),"%"
 
 print "\n=========== Nature_Sound ============="
-nature_sound=(final_df2.loc[:,'3'] - final_df1.loc[:,'3']) *100
+nature_sound=(final_df2.iloc[3][2:] - final_df1.iloc[3][2:]) *100
 #print nature_sound
 for key, value in nature_sound.iteritems():
     if value > 0:
@@ -79,7 +79,7 @@ for key, value in nature_sound.iteritems():
         print key," decreased by", format(value).replace("-",""),"%"
 
 print "\n========== Domestic_Animals ============"
-domestic_animals=(final_df2.loc[:,'4'] - final_df1.loc[:,'4']) *100
+domestic_animals=(final_df2.iloc[4][2:] - final_df1.iloc[4][2:]) *100
 #print domestic_animals
 for key, value in domestic_animals.iteritems():
     if value > 0:
@@ -88,7 +88,7 @@ for key, value in domestic_animals.iteritems():
         print key," decreased by", format(value).replace("-",""),"%"
 
 print "\n=============== Tools ================="
-tools=(final_df2.loc[:,'5'] - final_df1.loc[:,'5']) *100
+tools=(final_df2.iloc[5][2:] - final_df1.iloc[5][2:]) *100
 #print tools
 for key, value in tools.iteritems():
     if value > 0:
@@ -97,7 +97,7 @@ for key, value in tools.iteritems():
         print key," decreased by", format(value).replace("-",""),"%"
 
 print "\n============= Macro_Avg ==============="
-macro_avg=(final_df2.loc[:,'macro avg'] - final_df1.loc[:,'macro avg']) *100
+macro_avg=(final_df2.iloc[6][2:] - final_df1.iloc[6][2:]) *100
 #print macro_avg
 for key, value in macro_avg.iteritems():
     if value > 0:
@@ -106,7 +106,7 @@ for key, value in macro_avg.iteritems():
         print key," decreased by", format(value).replace("-",""),"%"
 
 print "\n============== Micro_Avg ==============="
-micro_avg=(final_df2.loc[:,'micro avg'] - final_df1.loc[:,'micro avg']) *100
+micro_avg=(final_df2.loc[7][2:] - final_df1.loc[7][2:]) *100
 #print micro_avg
 for key, value in micro_avg.iteritems():
     if value > 0:
@@ -115,11 +115,10 @@ for key, value in micro_avg.iteritems():
         print key," decreased by", format(value).replace("-",""),"%"
 
 print "\n============ Weighted_Avg =============="
-weighted_avg=(final_df2.loc[:,'weighted avg'] - final_df1.loc[:,'weighted avg']) *100
+weighted_avg=(final_df2.loc[8][2:] - final_df1.loc[8][2:]) *100
 #print weighted_avg
 for key, value in weighted_avg.iteritems():
     if value > 0:
         print key,"increased by", format(value).replace("-",""),"%"
     else:
         print key," decreased by", format(value).replace("-",""),"%"     
-
