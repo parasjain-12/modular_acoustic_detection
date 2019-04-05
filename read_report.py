@@ -191,5 +191,5 @@ def upload_file(self, filename, content, channel):
 ch = '#jenkins'
 con = 'Compared result '
 fil = 'filename12'
-upload_file(fil,con,ch)
+upload_file(self,fil,con,ch)
 #files.upload(token,file1)
