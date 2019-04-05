@@ -178,6 +178,7 @@ import config
 from slackclient import SlackClient
 token  = "xoxp-601323582535-600179716996-601332785047-41a3802ba14f65579bdb90437cd89869"
 sc = SlackClient(token)
+sc.api_call("api.test")
 
 sc.api_call("files.upload", filename=name_file, \
     channels='#jenkin',username='Paras Jain', \
