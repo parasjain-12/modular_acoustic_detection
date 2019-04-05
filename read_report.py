@@ -178,9 +178,18 @@ import config
 from slackclient import SlackClient
 token  = "xoxp-601323582535-600179716996-601332785047-41a3802ba14f65579bdb90437cd89869"
 sc = SlackClient(token)
-sc.api_call("api.test")
+def upload_file(self, filename, content, channel):
+        
+    '''
+    upload a long text as a file
+    '''
+    ret = self.slack_client.api_call("files.upload", filename=filename, channels=channel, file= io.BytesIO(str.encode(content)))
+    if not 'ok' in ret or not ret['ok']:
+        # error
+        self.logger.error('fileUpload failed %s', ret['error'])
 
-sc.api_call("files.upload", filename=name_file, \
-    channels='#jenkin',username='Paras Jain', \
-    file=open(filename12, 'r').read())
+ch = '#jenkins'
+con = 'Compared result '
+fil = 'filename12'
+upload_file(fil,con,ch)
 #files.upload(token,file1)
