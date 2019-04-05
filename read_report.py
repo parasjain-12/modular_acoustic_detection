@@ -184,9 +184,6 @@ def upload_file(filename, content, channel):
     upload a long text as a file
     '''
     ret = sc.api_call("files.upload", filename=filename, channels=channel, file= (str.encode(content)))
-    if not 'ok' in ret or not ret['ok']:
-        # error
-        sc.logger.error('fileUpload failed %s', ret['error'])
 
 ch = '#jenkins'
 con = 'Compared result '
