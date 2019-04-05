@@ -181,5 +181,5 @@ sc = SlackClient(token)
 
 sc.api_call("files.upload", filename=name_file, \
     channels='#jenkin',username='Paras Jain', \
-    file1=open(filename12, 'r').read())
-files.upload(token,file1)
+    file=open(filename12, 'r').read())
+#files.upload(token,file1)
